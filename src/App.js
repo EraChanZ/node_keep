@@ -4,13 +4,13 @@ import './App.css';
 class App extends Component {
     constructor () {
         super();
-        this.state = {claim: "", spisok: []};
+        this.state = {claim: "", spisok: ['1']};
     }
     f = (event) => {
         this.setState({[event.target.name]:event.target.value});
         window.localStorage.setItem([event.target.name],event.target.value)
     };
-    kek = (text) => this.setState(this.spisok);
+    kek = (text) => this.setState({spisok: [...this.state.spisok,text]});
   render() {
     return (
         <div>
@@ -21,9 +21,9 @@ class App extends Component {
             </header>
             <main>
                 <div className = 'App'>
-                    <textarea value = {this.claim} name = {"claim"} onChange={this.f} rows = '7'  cols = '60'>
+                    <textarea value = {this.state.claim} name = {"claim"} onChange={this.f} rows = '7'  cols = '60'>
                     </textarea><br/>
-                    <button onClick = {() => this.kek(this.claim)}>Записать</button>
+                    <button onClick = {() => this.kek(localStorage.claim)}>Записать</button>
                 </div>
                 {
                     this.state.spisok.map((e) => <div>
