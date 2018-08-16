@@ -4,7 +4,9 @@ import './App.css';
 class App extends Component {
     constructor () {
         super();
-        this.state = {claim: "", spisok: []};
+
+        this.state = {claim: "", spisok: [...window.localStorage.myKey.split(','),window.localStorage.claim]};
+
     }
     f = (event) => {
         this.setState({[event.target.name]:event.target.value});
@@ -12,6 +14,7 @@ class App extends Component {
     };
     kek = (text) => {
         this.setState({spisok: [...this.state.spisok,text]});//todo
+        window.localStorage.setItem("myKey", this.state.spisok);
     };
   render() {
     return (
