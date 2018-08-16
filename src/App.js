@@ -4,8 +4,9 @@ import './App.css';
 class App extends Component {
     constructor () {
         super();
-
-        this.state = {claim: "", spisok: [...window.localStorage.myKey.split(','),window.localStorage.claim]};
+        this.sas = [];
+        window.localStorage.length !== 0 ? this.sas = [...window.localStorage.myKey.split(','),window.localStorage.claim] : null;
+        this.state = {claim: "", spisok: this.sas};
 
     }
     f = (event) => {
