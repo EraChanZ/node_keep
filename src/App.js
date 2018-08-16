@@ -4,13 +4,15 @@ import './App.css';
 class App extends Component {
     constructor () {
         super();
-        this.state = {claim: "", spisok: ['1']};
+        this.state = {claim: "", spisok: []};
     }
     f = (event) => {
         this.setState({[event.target.name]:event.target.value});
         window.localStorage.setItem([event.target.name],event.target.value)
     };
-    kek = (text) => this.setState({spisok: [...this.state.spisok,text]});
+    kek = (text) => {
+        this.setState({spisok: [...this.state.spisok,text]});//todo
+    };
   render() {
     return (
         <div>
@@ -25,11 +27,13 @@ class App extends Component {
                     </textarea><br/>
                     <button onClick = {() => this.kek(localStorage.claim)}>Записать</button>
                 </div>
+                <ol>
                 {
-                    this.state.spisok.map((e) => <div>
-                        <ul>{e}</ul>
-                    </div>)
+                    this.state.spisok.map((e) =>
+                            <li className = 'zap'>{e}</li>
+                        )
                 }
+                </ol>
             </main>
             <footer>
             </footer>
